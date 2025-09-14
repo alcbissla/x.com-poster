@@ -1,0 +1,64 @@
+# Automated Twitter Bot with Telegram Control
+
+## Overview
+
+This is a professional Flask web server that operates an automated Twitter posting bot controlled via Telegram. The system combines AI-powered content generation with automated social media posting, specifically designed for cryptocurrency marketing campaigns. The bot can generate engaging Twitter posts using AI models (Gemini and OpenAI), schedule posts automatically every 2 hours, and provides a web-based admin dashboard for monitoring and control.
+
+## User Preferences
+
+Preferred communication style: Simple, everyday language.
+
+## System Architecture
+
+### Frontend Architecture
+- **React Admin Dashboard**: Password-protected web interface for monitoring bot statistics, post history, and system status
+- **Flask Web Server**: Serves the admin dashboard and provides REST API endpoints for bot management
+- **CORS-enabled**: Supports cross-origin requests for frontend-backend communication
+
+### Backend Architecture
+- **Flask Application**: Main web server handling HTTP requests and serving the admin interface
+- **Telegram Bot Integration**: Uses python-telegram-bot library for receiving commands and managing bot interactions
+- **Twitter API Integration**: Leverages Tweepy for posting content to Twitter
+- **Scheduler System**: Uses APScheduler for automated posting with configurable intervals (default: 2 hours)
+- **Content Generation Engine**: Dual AI integration supporting both Google Gemini and OpenAI for dynamic content creation
+- **Duplicate Detection**: Hash-based system to prevent posting duplicate content
+
+### Data Storage Solutions
+- **JSON File Storage**: Uses local JSON files for configuration and state management
+  - `bot_config.json`: Stores bot settings, post statistics, user permissions, and timing data
+  - `post_history.json`: Maintains history of posted content for duplicate detection
+  - `cookies.txt`: Handles web session management for admin authentication
+
+### Authentication and Authorization
+- **Telegram User Whitelist**: Maintains list of authorized Telegram user IDs in bot configuration
+- **Session-based Web Auth**: Uses Flask sessions with password protection for admin dashboard access
+- **API Key Management**: Securely handles multiple API keys through environment variables
+
+### Content Management System
+- **Template-based Posting**: Configurable base scripts for consistent messaging format
+- **AI Content Enhancement**: Automatically generates variations and improvements to base content
+- **Web Scraping Capabilities**: Can analyze web content and incorporate trending information
+- **Hashtag and Mention Integration**: Automatically includes relevant cryptocurrency hashtags and mentions
+
+## External Dependencies
+
+### AI Services
+- **Google Gemini AI**: Primary content generation service for creating engaging social media posts
+- **OpenAI API**: Secondary AI service for content generation and enhancement
+
+### Social Media APIs
+- **Twitter API v2**: For posting tweets and managing Twitter account interactions
+- **Telegram Bot API**: For receiving commands and providing bot control interface
+
+### Web Services
+- **BeautifulSoup4**: For web scraping and content analysis from external sources
+- **Requests Library**: For HTTP communications with various APIs and web services
+
+### Infrastructure Services
+- **Gunicorn**: WSGI HTTP Server for production deployment
+- **APScheduler**: For reliable background job scheduling and automated posting
+- **Flask-CORS**: For handling cross-origin requests in the web dashboard
+
+### Development and Utilities
+- **Python-dotenv**: For secure environment variable management
+- **Nest-asyncio**: For handling asynchronous operations within the Flask application
